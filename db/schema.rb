@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141201173147) do
+ActiveRecord::Schema.define(version: 20141202161929) do
 
   create_table "relationships", force: true do |t|
     t.integer  "follower_id"
@@ -27,9 +27,10 @@ ActiveRecord::Schema.define(version: 20141201173147) do
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "password_digest"
+    t.boolean  "admin",           default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
