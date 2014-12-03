@@ -11,7 +11,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141203052728) do
+ActiveRecord::Schema.define(version: 20141203143519) do
+
+  create_table "bookings", force: true do |t|
+    t.integer  "ConferenceRoom_id"
+    t.integer  "user_id"
+    t.string   "status"
+    t.integer  "stHour"
+    t.integer  "stMin"
+    t.datetime "stTime"
+    t.integer  "enHour"
+    t.integer  "enMin"
+    t.datetime "enTime"
+    t.integer  "day"
+    t.integer  "month"
+    t.integer  "year"
+    t.datetime "date"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "bookings", ["ConferenceRoom_id"], name: "index_bookings_on_ConferenceRoom_id"
+  add_index "bookings", ["user_id"], name: "index_bookings_on_user_id"
+
+  create_table "conference_rooms", force: true do |t|
+    t.string   "name"
+    t.integer  "floor"
+    t.string   "buildingName"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "type"
+    t.integer  "capacity"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "conference_rooms", ["name", "buildingName"], name: "index_conference_rooms_on_name_and_buildingName", unique: true
 
   create_table "microposts", force: true do |t|
     t.text     "content"

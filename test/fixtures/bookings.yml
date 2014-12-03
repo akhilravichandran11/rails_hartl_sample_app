@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ConferenceRoom_id: 
+  user_id: 
+  stHour: 1
+  stMin: 1
+  stTime: 2014-12-03 14:35:19
+  enHour: 1
+  enMin: 1
+  enTime: 2014-12-03 14:35:19
+  day: 1
+  month: 1
+  year: 1
+  date: 2014-12-03 14:35:19
+
+two:
+  ConferenceRoom_id: 
+  user_id: 
+  stHour: 1
+  stMin: 1
+  stTime: 2014-12-03 14:35:19
+  enHour: 1
+  enMin: 1
+  enTime: 2014-12-03 14:35:19
+  day: 1
+  month: 1
+  year: 1
+  date: 2014-12-03 14:35:19
