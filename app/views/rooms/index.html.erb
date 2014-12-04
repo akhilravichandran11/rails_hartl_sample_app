@@ -1,0 +1,15 @@
+<% provide(:title, 'All Rooms') %>
+<h1>All Rooms</h1>
+
+
+
+<ul class="rooms">
+  <% @rooms.each do |room| %>
+
+      <%= render room %>
+      
+  <% end %>
+</ul>
+
+
+

@@ -1,0 +1,43 @@
+<% provide(:title, 'Create Conference Room' ) %>
+
+<h1>New Conference Room</h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    
+    <%= form_for(@room) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    
+    <%= f.label :Name %>
+    <%= f.text_field :roomname, class: 'form-control' %>
+    
+    <%= f.label :Conference_Room_Type %>
+    <%= f.text_field :roomtype, class: 'form-control' %>
+    
+    <%= f.label :Capacity %>
+    <%= f.number_field :roomcapacity, class: 'form-control' %>
+    
+    <%= f.label :Floor %>
+    <%= f.number_field :floor, class: 'form-control' %>
+    
+    <%= f.label :Building_Name %>
+    <%= f.text_field :buildingname, class: 'form-control' %>
+    
+    <%= f.label :Campus_Name %>
+    <%= f.text_field :campusname, class: 'form-control' %>
+    
+    <%= f.label :Country %>
+    <%= f.text_field :country, class: 'form-control' %>
+    
+    <%= f.label :State %>
+    <%= f.text_field :state, class: 'form-control' %>
+    
+    <%= f.label :City %>
+    <%= f.text_field :city, class: 'form-control' %>
+    
+    
+    <%= f.submit "Create Conference Room" , class: "btn btn-primary" %>
+    
+    <% end %>
+    
+  </div>
+</div>

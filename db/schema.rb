@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141203143519) do
+ActiveRecord::Schema.define(version: 20141203203834) do
 
   create_table "bookings", force: true do |t|
     t.integer  "ConferenceRoom_id"
@@ -69,6 +69,22 @@ ActiveRecord::Schema.define(version: 20141203143519) do
   add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id"
   add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
   add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id"
+
+  create_table "rooms", force: true do |t|
+    t.string   "roomname"
+    t.string   "roomtype"
+    t.integer  "roomcapacity"
+    t.integer  "floor"
+    t.string   "buildingname"
+    t.string   "campusname"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "rooms", ["roomname", "buildingname", "campusname"], name: "index_rooms_on_roomname_and_buildingname_and_campusname", unique: true
 
   create_table "users", force: true do |t|
     t.string   "name"

@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
   has_many :microposts, dependent: :destroy
-  has_many :bookings
   
   before_save { self.email = email.downcase }
   

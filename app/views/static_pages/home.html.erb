@@ -13,6 +13,13 @@
      <%= render 'shared/feed' %>
    </div>
    </div>
+   <div class="row">
+     <% if current_user.admin %>
+     
+      <%= link_to " Create Conference Rooms " , new_room_path %>
+     
+     <% end %>
+   </div>
  <% else %>
 
 

@@ -1,0 +1,11 @@
+<li>
+  
+<%= link_to room.roomname+"-"+room.buildingname+"-"+room.campusname+"-"+room.city+"-"+room.state+"-"+room.country, room %>
+
+<% if current_user.admin? %>
+    | <%= link_to "Edit" , edit_room_path(room) %>
+    | <%= link_to "Delete" ,room, method: :delete, data: { confirm: "You sure?" } %>
+    
+  <% end %>  
+
+</li>
