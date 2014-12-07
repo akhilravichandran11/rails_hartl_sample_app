@@ -54,13 +54,12 @@ class Confroombooking < ActiveRecord::Base
          ##errors[:base] << " Booked End Time "+ @renhour.to_s+" "+@renmin.to_s+" "+ @bookedendtime.to_s
          ##errors[:base] << " Current Start Time "+ @currentstarttime.to_s
          ##errors[:base] << " Current End Time "+ @currentendtime.to_s
-         
-         
+  
          
          if @currentstarttime>=@bookedstarttime and  @currentstarttime<=@bookedendtime
-         errors[:base] << "Start Time Is Occupied By User Id = "+user_id.to_s+" User Name = "+User.find(user_id)[:name].to_s+" With Booking Id = "+resv[:id].to_s+" With Time Slot "+@bookedstarttime.to_s(:time)+" - "+@bookedendtime.to_s(:time)
+         errors[:base] << "Start Time Is Occupied By User With Id = "+resv[:user_id].to_s+" And Name = "+User.find_by(:id => resv[:user_id].to_i)[:name].to_s+" Along With Booking Id = "+resv[:id].to_s+" And In Time Slot "+@bookedstarttime.to_s(:time)+" - "+@bookedendtime.to_s(:time)
          elsif @currentendtime>=@bookedstarttime and  @currentendtime<=@bookedendtime
-         errors[:base] << "End Time Is Occupied By User Id = "+user_id.to_s+" User Name = "+User.find(user_id)[:name].to_s+" With Booking Id = "+resv[:id].to_s+" With Time Slot "+@bookedstarttime.to_s(:time)+" - "+@bookedendtime.to_s(:time)
+         errors[:base] << "End Time Is Occupied By User With Id = "+resv[:user_id].to_s+" And Name = "+User.find_by(:id => resv[:user_id].to_i)[:name].to_s+" Along With Booking Id = "+resv[:id].to_s+" And In Time Slot "+@bookedstarttime.to_s(:time)+" - "+@bookedendtime.to_s(:time)
          end
          
          

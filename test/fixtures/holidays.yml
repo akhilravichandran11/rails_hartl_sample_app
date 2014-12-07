@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  hdate: 2014-12-07
+  hname: MyString
+  status: false
+
+two:
+  hdate: 2014-12-07
+  hname: MyString
+  status: false
