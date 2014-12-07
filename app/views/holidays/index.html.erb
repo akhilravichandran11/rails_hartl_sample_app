@@ -1,0 +1,11 @@
+<% provide(:title, ' All Holidays ') %>
+<h1>All Holidays</h1>
+
+
+<ul class="holidays">
+  <% @holidays.each do |holiday| %>
+
+      <%= render holiday %>
+      
+  <% end %>
+</ul>

@@ -7,5 +7,6 @@ class CreateHolidays < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+    add_index :holidays, [:hdate, :hname ], unique: true
   end
 end

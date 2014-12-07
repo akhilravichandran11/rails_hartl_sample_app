@@ -1,0 +1,14 @@
+<li>
+  
+<%= link_to " Holiday Name = "+holiday.hname+" || Date = "+holiday.hdate.to_s+" || Status = "+holiday.status.to_s, holiday %>
+
+<% if current_user.admin?   %>
+
+
+  | <%= link_to "Edit" , edit_holiday_path(holiday) %>
+  | <%= link_to "Delete" ,holiday  , method: :delete, data: { confirm: "You Sure ?" } %>
+
+      
+<% end %>  
+
+</li>

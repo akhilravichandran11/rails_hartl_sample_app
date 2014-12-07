@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   resources :users
   resources :rooms
   resources :confroombookings
+  resources :holidays
 end

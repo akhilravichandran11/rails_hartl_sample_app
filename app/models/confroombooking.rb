@@ -12,6 +12,7 @@ class Confroombooking < ActiveRecord::Base
   validate:booking_endtime_cannot_be_lesser_than_starttime
   validate:booking_slot
   validate:booking_date_cannot_be_weekend
+  validate:booking_date_cannot_be_on_a_holiday
   
  validates(:roomstatusreason , length: { minimum:3 , maximum: 50 } )
  
@@ -81,6 +82,17 @@ class Confroombooking < ActiveRecord::Base
       errors[:base]<< "Booking Day Can't Be Saturday"
     elsif !bdate.blank? and bdate.strftime("%a").to_s.include? "Sun"
       errors[:base]<< "Booking Day Can't Be Sunday"
+    end
+  end
+  
+  def booking_date_cannot_be_on_a_holiday
+    
+    @cholidays=Holiday.all
+    @cholidays.all.each do |choliday|
+      
+      if choliday[:hdate]==bdate
+        errors[:base]<< "Booking Day Is A Holiday | Holiday Name = "+choliday[:hname]
+      end
     end
   end
   

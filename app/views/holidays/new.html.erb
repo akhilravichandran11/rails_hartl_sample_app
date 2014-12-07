@@ -1,0 +1,24 @@
+<% provide(:title, ' Create Holiday ' ) %>
+
+<h1>Create Holiday</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    
+    <%= form_for @holiday , :url => { :action => "create" } do |f| %>
+     
+    <%= render 'shared/error_messages', object: f.object %>
+  
+    <%= f.label :Holiday_Name %>
+    <%= f.text_field :hname %>
+  
+    <%= f.label :Holiday_Date %>
+    <%= f.date_select :hdate %>
+  
+    <%= f.submit "Create Holiday " , class: "btn btn-primary" %>
+ 
+    <% end %>
+
+    
+  </div>
+</div>
