@@ -7,10 +7,14 @@
     
     <%= form_for @confroombooking , :url => { :action => "create" } do |f| %>
      
-      <%= render 'shared/error_messages', object: f.object %>
+    <%= render 'shared/error_messages', object: f.object %>
+  
+    <% if current_user.admin? %>
     
     <%= f.label :User_id %>
-    <%= f.number_field :user_id, :value => 2 %>
+    <%= f.collection_select(:user_id,  @cusers , :id, :name ) %>
+    
+    <% end %>
     
     <%= f.label :Room_id %>
     <%= f.collection_select(:room_id,  @crooms , :id, :roomname ) %>

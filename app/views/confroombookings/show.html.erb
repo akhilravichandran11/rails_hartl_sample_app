@@ -1,2 +1,15 @@
-<h1>Confroombooking#show</h1>
-<p>Find me in app/views/confroombooking/show.html.erb</p>
+<% provide(:title, "Booking Info : "+ @confroombooking.id ) %>
+<div class="row">
+    
+   <li>Booking Id    -   <%= @confroombooking.id %> </li> 
+   <li>User_id       -   <%= @confroombooking.user_id %> </li>
+   <li>Room_id       -   <%= @confroombooking.room_id %> </li>
+   <li>Start - Time  -   <%= @confroombooking.stHour %>-<%= @confroombooking.stMin %></li>
+   <li>End   - Time  -   <%= @confroombooking.stHour %>-<%= @confroombooking.stMin %></li>
+   <li>Date          -   <%= @confroombooking.bday.to_s %></li>
+   <li>Status        -   <%= @confroombooking.roomstatus %></li>
+   <li>StatusReason  -   <%= @confroombooking.roomstatusreeason %></li>
+
+
+</div>
+

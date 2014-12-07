@@ -7,12 +7,10 @@ Rails.application.routes.draw do
   get 'signup' => 'users#new'
  ## get 'confroombookings' => 'confroombooking#index'
   ##post 'confroombookings' => 'confroombooking#index'
- ## post "confroombookings\new"
   get 'login' =>  'sessions#new'
   post 'login' =>  'sessions#create'
   delete 'logout' => 'session#destroy'
   resources :users
-  resources :microposts, only: [:create, :destroy]
   resources :rooms
   resources :confroombookings
 end

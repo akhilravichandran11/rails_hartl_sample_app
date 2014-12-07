@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  has_many :microposts, dependent: :destroy
   has_many :confroombookings
   
   before_save { self.email = email.downcase }
@@ -17,8 +16,5 @@ class User < ActiveRecord::Base
     BCrypt::Password.create(string, cost: cost)
   end
   
-  def feed
-     Micropost.where("user_id = ?", id)
-  end
   
 end

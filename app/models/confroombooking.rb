@@ -11,6 +11,7 @@ class Confroombooking < ActiveRecord::Base
   validate:booking_endtime_cannot_be_in_the_past
   validate:booking_endtime_cannot_be_lesser_than_starttime
   validate:booking_slot
+  validate:booking_date_cannot_be_weekend
   
  validates(:roomstatusreason , length: { minimum:3 , maximum: 50 } )
  
@@ -24,8 +25,17 @@ class Confroombooking < ActiveRecord::Base
        elsif User.exists?(id:[ user_id]) and Room.exists?(id:[ room_id])
        
        ##errors[:base] << "User And Room Does  Exist"
+      
        
-       @reserved=Confroombooking.where("room_id = ? AND bday= ? AND bmonth= ? AND byear = ? and roomstatus = ? ",room_id,bday,bmonth,byear,true)
+      ## @reserved=Confroombooking.where("room_id = ? AND bday= ? AND bmonth= ? AND byear = ? and roomstatus = ? ",room_id,bday,bmonth,byear,true)
+       
+       
+        if(roomstatusreason=="Edit")
+        ## @reserved.delete(:id => id)
+         @reserved=Confroombooking.where("id != ? AND room_id = ? AND bday= ? AND bmonth= ? AND byear = ? and roomstatus = ? ",id,room_id,bday,bmonth,byear,true)
+         elsif
+         @reserved=Confroombooking.where("room_id = ? AND bday= ? AND bmonth= ? AND byear = ? and roomstatus = ? ",room_id,bday,bmonth,byear,true)
+         end
        
        @reserved.all.each do |resv|
       
@@ -48,9 +58,9 @@ class Confroombooking < ActiveRecord::Base
          
          
          if @currentstarttime>=@bookedstarttime and  @currentstarttime<=@bookedendtime
-         errors[:base] << "Start Time Is Occupied By User Id = "+user_id.to_s+" With Booking Id = "+resv[:id].to_s+" With Time Slot "+@bookedstarttime.to_s(:time)+" - "+@bookedendtime.to_s(:time)
+         errors[:base] << "Start Time Is Occupied By User Id = "+user_id.to_s+" User Name = "+User.find(user_id)[:name].to_s+" With Booking Id = "+resv[:id].to_s+" With Time Slot "+@bookedstarttime.to_s(:time)+" - "+@bookedendtime.to_s(:time)
          elsif @currentendtime>=@bookedstarttime and  @currentendtime<=@bookedendtime
-         errors[:base] << "End Time Is Occupied By User Id = "+user_id.to_s+" With Booking Id = "+resv[:id].to_s+" With Time Slot "+@bookedstarttime.to_s(:time)+" - "+@bookedendtime.to_s(:time)
+         errors[:base] << "End Time Is Occupied By User Id = "+user_id.to_s+" User Name = "+User.find(user_id)[:name].to_s+" With Booking Id = "+resv[:id].to_s+" With Time Slot "+@bookedstarttime.to_s(:time)+" - "+@bookedendtime.to_s(:time)
          end
          
          
@@ -63,7 +73,15 @@ class Confroombooking < ActiveRecord::Base
  
   def booking_date_cannot_be_in_the_past
     if !bdate.blank? and bdate < Date.today
-      errors.add(:bdate, "Booking Date Can't Be In The Past")
+      errors[:base]<<  "Booking Date Can't Be In The Past"
+    end
+  end
+  
+    def booking_date_cannot_be_weekend
+    if !bdate.blank? and bdate.strftime("%a").to_s.include? "Sat"
+      errors[:base]<< "Booking Day Can't Be Saturday"
+    elsif !bdate.blank? and bdate.strftime("%a").to_s.include? "Sun"
+      errors[:base]<< "Booking Day Can't Be Sunday"
     end
   end
   
@@ -72,9 +90,9 @@ class Confroombooking < ActiveRecord::Base
       @ctimemin=Time.now.to_s(:time).split(':')[1].to_i
       
     if  !stHour.blank? and !stMin.blank? and bdate == Date.today  and  @ctimehour==stHour and @ctimemin>stMin
-      errors.add(:stMin, "Booking Start Time(Minutes) Can't Be In The Past")
+      errors[:base]<<  "Booking Start Time(Minutes) Can't Be In The Past"
     elsif  !stHour.blank? and  bdate == Date.today  and  @ctimehour>stHour
-      errors.add(:stHour, "Booking Start Time(Hour) Can't Be In The Past")
+      errors[:base]<<  "Booking Start Time(Hour) Can't Be In The Past"
     end
   end
   
@@ -83,9 +101,9 @@ class Confroombooking < ActiveRecord::Base
       @ctimemin=Time.now.to_s(:time).split(':')[1].to_i
       
     if  !enHour.blank? and !enMin.blank? and bdate == Date.today  and  @ctimehour==enHour and @ctimemin>enMin
-      errors.add(:enMin, "Booking End Time(Minutes) Can't Be In The Past")
+      errors[:base]<<  "Booking End Time(Minutes) Can't Be In The Past"
     elsif  !enHour.blank? and  bdate == Date.today  and  @ctimehour>enHour
-      errors.add(:enHour, "Booking End Time(Hour) Can't Be In The Past")
+      errors[:base]<<  "Booking End Time(Hour) Can't Be In The Past"
     end
   end
   
@@ -93,9 +111,9 @@ class Confroombooking < ActiveRecord::Base
     def booking_endtime_cannot_be_lesser_than_starttime
     
     if !stHour.blank? and !stMin.blank? and !enHour.blank? and !enMin.blank? and bdate >= Date.today  and enHour==stHour and stMin>=enMin
-      errors.add(:enMin, "Booking End Time(Minutes) Can't Be Lesser Than Start Time")
+      errors[:base]<<  "Booking End Time(Minutes) Can't Be Lesser Than Start Time"
     elsif  !stHour.blank? and !enHour.blank? and bdate >= Date.today and stHour>enHour
-      errors.add(:enHour, "Booking End Time(Hour) Can't Be Lesser Than Start Time")
+      errors[:base]<<  "Booking End Time(Hour) Can't Be Lesser Than Start Time"
     end
   end
   

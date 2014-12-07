@@ -1,20 +1,15 @@
 <% provide(:title, @room.roomname ) %>
 <div class="row">
-  <aside class="col-md-4">
-    <section class="room_info">
-    <h1>
-    <%= @room.roomname %>
-    <%= @room.roomtype %>
-    <%= @room.roomcapacity %>
-    <%= @room.floor %>
-    <%= @room.buildingname %>
-    <%= @room.campusname %>
-    <%= @room.city %>
-    <%= @room.state %>
-    <%= @room.country %>
     
-    </h1>
-    </section>
-  </aside>
+   <li>Name          -   <%= @room.roomname %> </li> 
+   <li>Type          -   <%= @room.roomtype %> </li>
+   <li>Capacity      -   <%= @room.roomcapacity %> </li> 
+   <li>Floor         -   <%= @room.floor %> </li>
+   <li>Building Name -   <%= @room.buildingname %> </li> 
+   <li>Campus Name   -   <%= @room.campusname %> </li>
+   <li>City Name     -   <%= @room.city %> </li>
+   <li>State Name    -   <%= @room.state %> </li>
+   <li>Country Name  -   <%= @room.country %> </li>
+
 </div>
 

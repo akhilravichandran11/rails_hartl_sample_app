@@ -1,1 +1,33 @@
-<h1>Roombookings Edit</h1>
+<% provide(:title, ' Edit Booking ' ) %>
+
+<h1>Edit Booking</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    
+    <%= form_for @confroombooking , :url => { :action => "update" } do |f| %>
+     
+      <%= render 'shared/error_messages', object: f.object %>
+    
+    <%= f.label :Start_Time_Hour %>
+    <%= f.select :stHour, @chourtimes %>
+    
+    <%= f.label :Start_Time_Min %>
+    <%= f.select :stMin, @cmintimes %>
+
+    <%= f.label :End_Time_Hour %>
+    <%= f.select :enHour, @chourtimes %>
+    
+    <%= f.label :End_Time_Min %>
+    <%= f.select :enMin, @cmintimes%>
+    
+    <%= f.label :Date %>
+    <%= f.date_select :bdate %>
+  
+    <%= f.submit "Update Booking " , class: "btn btn-primary" %>
+ 
+    <% end %>
+
+    
+  </div>
+</div>

@@ -1,2 +1,13 @@
-<h1>Confroombooking#index</h1>
-<p>Find me in app/views/confroombooking/index.html.erb</p>
+<% provide(:title, ' All Bookings ') %>
+<h1>All Rooms</h1>
+
+
+
+<ul class="confroombookings">
+  <% @confroombookings.each do |confroombooking| %>
+
+      <%= render confroombooking %>
+      
+  <% end %>
+</ul>
+

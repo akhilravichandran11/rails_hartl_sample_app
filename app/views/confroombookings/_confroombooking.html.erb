@@ -1,2 +1,27 @@
-<h1>Roombookings Partial</h1>
+<li>
+  
+<%= link_to "Booking Id = "+confroombooking.id.to_s+" || User Id = "+confroombooking.user_id.to_s+" || User Name = "+User.find(confroombooking.user_id)[:name]+" || Room Id = "+confroombooking.room_id.to_s+" || Room Name = "+Room.find(confroombooking.room_id)[:roomname]+" || Start - Time = "+confroombooking.stHour.to_s+":"+confroombooking.stMin.to_s+" || End - Time = "+confroombooking.enHour.to_s+":"+confroombooking.enMin.to_s+" || Date = "+confroombooking.bday.to_s+"-"+confroombooking.bmonth.to_s+"-"+confroombooking.byear.to_s, confroombooking %>
 
+<% if current_user.admin? or current_user[:id]==confroombooking.user_id  %>
+
+<% if confroombooking.bdate>Date.today %>
+
+  | <%= link_to "Edit" , edit_confroombooking_path(confroombooking) %>
+  | <%= link_to "Delete" ,confroombooking  , method: :delete, data: { confirm: "You Sure ?" } %>
+
+      
+
+<% end %>
+
+<% if confroombooking.bdate==Date.today and Time.parse(confroombooking.stHour.to_s+":"+confroombooking.stMin.to_s)>Time.now %>
+
+
+  | <%= link_to "Edit" , edit_confroombooking_path(confroombooking) %>
+  | <%= link_to "Delete" ,confroombooking  , method: :delete, data: { confirm: "You Sure ?" } %>
+
+
+<% end %>
+    
+<% end %>  
+
+</li>
