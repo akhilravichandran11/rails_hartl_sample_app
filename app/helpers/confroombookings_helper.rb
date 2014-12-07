@@ -1,0 +1,2 @@
+module ConfroombookingsHelper
+end

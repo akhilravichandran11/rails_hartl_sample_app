@@ -1,0 +1,39 @@
+<% provide(:title, ' Create Booking ' ) %>
+
+<h1>Create Booking</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    
+    <%= form_for @confroombooking , :url => { :action => "create" } do |f| %>
+     
+      <%= render 'shared/error_messages', object: f.object %>
+    
+    <%= f.label :User_id %>
+    <%= f.number_field :user_id, :value => 2 %>
+    
+    <%= f.label :Room_id %>
+    <%= f.collection_select(:room_id,  @crooms , :id, :roomname ) %>
+    
+    <%= f.label :Start_Time_Hour %>
+    <%= f.select :stHour, @chourtimes %>
+    
+    <%= f.label :Start_Time_Min %>
+    <%= f.select :stMin, @cmintimes %>
+
+    <%= f.label :End_Time_Hour %>
+    <%= f.select :enHour, @chourtimes %>
+    
+    <%= f.label :End_Time_Min %>
+    <%= f.select :enMin, @cmintimes%>
+    
+    <%= f.label :Date %>
+    <%= f.date_select :bdate %>
+  
+    <%= f.submit "Create Booking " , class: "btn btn-primary" %>
+ 
+    <% end %>
+
+    
+  </div>
+</div>

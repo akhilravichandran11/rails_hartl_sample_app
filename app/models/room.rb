@@ -1,4 +1,5 @@
 class Room < ActiveRecord::Base
+  has_many :confroombookings
   
     default_scope -> { order(created_at: :desc) }
   
@@ -11,8 +12,6 @@ class Room < ActiveRecord::Base
    validates(:country,  presence: true , length: { minimum:3 , maximum: 50 } )
    validates(:roomtype,  presence: true , length: { minimum:3 , maximum: 50 } )
    validates(:roomcapacity,  presence: true )
-   
-   ##validates([:roomname, :buildingname, :campusname]  ,uniqueness: { case_sensitive: false } )
    
   validates_uniqueness_of( :roomname, :scope => [:buildingname, :campusname], :case_sensitive => false )
    

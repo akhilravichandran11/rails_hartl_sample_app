@@ -1,5 +1,6 @@
 <% if logged_in? %>
-  <div class="row">
+
+   <div class="row">
     <aside class="col-md-4">
       <section class="user_info">
          <%= render 'shared/user_info' %>
@@ -14,26 +15,48 @@
    </div>
    </div>
    <div class="row">
-     <% if current_user.admin %>
+
+ 
+     <div class="row">
+       
+      <% if current_user.admin %>
      
       <%= link_to " Create Conference Rooms " , new_room_path %>
      
-     <% end %>
-   </div>
+      <% end %>
+       
+      
+     </div>
+     
+     <div class="row">
+      
+      <%= link_to " Show Conference Rooms " , rooms_path %>
+      
+       
+     </div>
+    
+     <div class="row">
+       
+      <%= link_to " Book Rooms " , new_confroombooking_path %>
+      
+       
+     </div>
+     
+      <div class="row">
+       
+      <%= link_to " Show Bookings " , confroombookings_path %>
+      
+       
+     </div>
+  
  <% else %>
 
-
-<div class="center jumbotron">
-   <h1>Welcome To The Sample App</h1>
-   
-   <h2>This is the home page for the
-   <a href="htttp://www.railstutorial.org/">Ruby on Rails Tutorial</a>
-      sample application
-   </h2>
+  <div class="center jumbotron">
+   <h1>Welcome To The Sample Conference Room Booking App</h1>
    
    <%= link_to "Sign up now!" , signup_path , class: "btn btn-lg btn-primary" %>
    
-</div>
+  </div>
 
 <% end %>
 

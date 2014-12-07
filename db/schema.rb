@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141203203834) do
+ActiveRecord::Schema.define(version: 20141205072037) do
 
   create_table "bookings", force: true do |t|
     t.integer  "ConferenceRoom_id"
@@ -49,6 +49,26 @@ ActiveRecord::Schema.define(version: 20141203203834) do
 
   add_index "conference_rooms", ["name", "buildingName"], name: "index_conference_rooms_on_name_and_buildingName", unique: true
 
+  create_table "confroombookings", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "room_id"
+    t.boolean  "roomstatus"
+    t.string   "roomstatusreason"
+    t.integer  "stHour"
+    t.integer  "stMin"
+    t.integer  "enHour"
+    t.integer  "enMin"
+    t.integer  "bday"
+    t.integer  "bmonth"
+    t.integer  "byear"
+    t.datetime "bdate"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "confroombookings", ["room_id"], name: "index_confroombookings_on_room_id"
+  add_index "confroombookings", ["user_id"], name: "index_confroombookings_on_user_id"
+
   create_table "microposts", force: true do |t|
     t.text     "content"
     t.integer  "user_id"
@@ -69,6 +89,24 @@ ActiveRecord::Schema.define(version: 20141203203834) do
   add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id"
   add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
   add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id"
+
+  create_table "roombookings", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "room_id"
+    t.integer  "stHour"
+    t.integer  "stMin"
+    t.integer  "enHour"
+    t.integer  "enMin"
+    t.integer  "bday"
+    t.integer  "bmonth"
+    t.integer  "byear"
+    t.datetime "bdate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "roombookings", ["room_id"], name: "index_roombookings_on_room_id"
+  add_index "roombookings", ["user_id"], name: "index_roombookings_on_user_id"
 
   create_table "rooms", force: true do |t|
     t.string   "roomname"
